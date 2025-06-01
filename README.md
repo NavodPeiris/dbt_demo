@@ -11,7 +11,8 @@ Try running the following commands:
 - install astro cli: https://www.astronomer.io/docs/astro/cli/install-cli/
 - cd dbt-dag
 - astro dev start
-- configure snowflake connection as follows:
+- goto Airflow UI
+- configure snowflake connection in Airflow as follows:
 ```
 Host: https://<replace>.snowflakecomputing.com
 Login: <snowflake username>
@@ -19,7 +20,7 @@ Password: <snowflake password>
 Port: 443
 Schema: <snowflake schema you use>
 ```
-- add following extra fields:
+- add following extra fields to connection:
 ```
 {
   "account": "your account", // ex: jj95000.ap-south-1.aws
