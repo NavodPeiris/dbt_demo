@@ -5,7 +5,7 @@
 
 ## Setup Snowflake Environment
 
-Execute following commands on snowflake upto clean up section:
+Execute following commands on snowflake:
 
 ```
 -- create accounts
