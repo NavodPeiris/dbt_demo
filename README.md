@@ -1,6 +1,34 @@
-### Run Project Manually
+<p align="center">
+  <img src="architecture.gif" />
+</p>
 
-Install dbt
+
+## Setup Snowflake Environment
+
+Execute following commands on snowflake upto clean up section:
+
+```
+-- create accounts
+use role accountadmin;
+
+create warehouse dbt_wh with warehouse_size='x-small';
+create database if not exists dbt_db;
+create role if not exists dbt_role;
+
+show grants on warehouse dbt_wh;
+
+grant role dbt_role to user <your snowflake username>;
+grant usage on warehouse dbt_wh to role dbt_role;
+grant all on database dbt_db to role dbt_role;
+
+use role dbt_role;
+
+create schema if not exists dbt_db.dbt_schema;
+```
+
+## Run Project Manually
+
+Install dbt with snowflake connectors
 
 Try running the following commands:
 - dbt run
@@ -32,9 +60,14 @@ Schema: <snowflake schema you use>
 ```
 - run the dbt-dag in Airflow UI
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## Clean Up Snowflake Resources  
+
+Execute following on snowflake:
+```
+-- clean up
+use role accountadmin;
+
+drop warehouse if exists dbt_wh;
+drop database if exists dbt_db;
+drop role if exists dbt_role;
+```
